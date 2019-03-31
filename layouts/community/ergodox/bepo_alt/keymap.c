@@ -88,6 +88,7 @@ KC_LCTL,    KC_INS,   KC_LGUI,  KC_LGUI,  KC_LALT,
 KC_TRNS,  KC_TRNS,
 KC_TRNS,
 KC_TRNS,  KC_TRNS,  KC_NO),
+};
 
 /* helper function to switch on of the right LED ON/OFF */
 static void indicate_using_led(const uint8_t led, const bool enabled) {
