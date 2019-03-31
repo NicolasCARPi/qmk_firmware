@@ -1,14 +1,10 @@
-/** Bepo layout for ergodox EZ by Nicolas CARPi (deltablot.com) */
+/* Bepo layout for ergodox EZ by Nicolas CARPi (deltablot.com) */
 #include QMK_KEYBOARD_H
 #include "keymap_bepo.h"
 #include "keymap_french.h"
 
-// keymaps
 #define BEPO 0  // default layer, for bepo compatible systems
 #define FNAV 1  // function / navigation / mouse layer
-
-// macros
-#define KP_00 0 // keypad "double 0"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: default layer
@@ -32,7 +28,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * so mouse is to toggle the mouse mode
  */
 [BEPO] = LAYOUT_ergodox(
-// Left hand
+
+/* Left hand */
 BP_DOLLAR,  BP_DQOT,  BP_LGIL,  BP_RGIL,  BP_LPRN,  BP_RPRN,  BP_AT,
 KC_TAB, BP_B,   BP_E_ACUTE, BP_P,   BP_O,   BP_E_GRAVE, KC_BSPC,
 BP_W,   BP_A,   BP_U,   BP_I,   BP_E,   BP_COMMA,
@@ -41,7 +38,8 @@ KC_LCTL,    KC_LGUI,    KC_LGUI,  KC_LGUI,  KC_LALT,
                             KC_PGUP,  KC_PGDOWN,
                                 KC_INS,
                         KC_SPC,   KC_LSHIFT,  DF(FNAV),
-// Right hand
+
+/* Right hand */
                 BP_PLUS, BP_MINUS,    BP_MINUS, BP_SLASH, BP_ASTR,  BP_EQUAL, BP_PERCENT,
         KC_CAPSLOCK,  BP_DCRC,  BP_V,   BP_D,   BP_L,   BP_J,   BP_Z,
             BP_C,   BP_T,   BP_S,   BP_R,   BP_N,   BP_M,
@@ -70,7 +68,8 @@ MO(FNAV), KC_RSHIFT,  KC_ENTER),
  *                                             `--------------------'      `--------------------'
  */
 [FNAV] = LAYOUT_ergodox(
-// Left hand
+
+/* Left hand */
 KC_NO,    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,
 KC_NO,    KC_MS_BTN5, KC_MS_BTN1, KC_MS_UP, KC_MS_BTN2, KC_MS_WH_UP,  KC_BSPC,
 KC_NO,    KC_MS_BTN4, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,  KC_MS_WH_DOWN,
@@ -79,7 +78,8 @@ KC_LCTL,    KC_INS,   KC_LGUI,  KC_LGUI,  KC_LALT,
                             KC_HOME,  KC_END,
                                 KC_TRNS,
                         KC_NO,    KC_TRNS,  KC_TRNS,
-// Right hand
+
+/* Right hand */
         KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F12,
         KC_NO,    KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   KC_F11,   KC_NO,
             KC_LEFT,  KC_DOWN,  KC_UP,  KC_RIGHT, KC_F12,   KC_NO,
@@ -89,24 +89,7 @@ KC_TRNS,  KC_TRNS,
 KC_TRNS,
 KC_TRNS,  KC_TRNS,  KC_NO),
 
-// --------------------------------------------------------------------------
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  switch(id) {
-    // keypad "double 0"
-    case KP_00:
-      if (record->event.pressed) {
-        return MACRO( T(KP_0), D(KP_0), END );
-      } else {
-        return MACRO( U(KP_0), END );
-      }
-      break;
-  }
-  return MACRO_NONE;
-};
-
-// helper function to switch on of the right LED ON/OFF
+/* helper function to switch on of the right LED ON/OFF */
 static void indicate_using_led(const uint8_t led, const bool enabled) {
   if (enabled) {
     ergodox_right_led_on(led);
@@ -115,26 +98,26 @@ static void indicate_using_led(const uint8_t led, const bool enabled) {
   }
 }
 
-// Runs constantly in the background, in a loop.
+/* Runs constantly in the background, in a loop */
 void matrix_scan_user(void) {
 
-  // red led for shift
+  /* red led for shift */
   if (keyboard_report->mods & MOD_BIT(KC_LSFT) ||
-      ((get_oneshot_mods() & MOD_BIT(KC_LSFT)) && !has_oneshot_mods_timed_out())) {
+    ((get_oneshot_mods() & MOD_BIT(KC_LSFT)) && !has_oneshot_mods_timed_out())) {
     indicate_using_led(1, true);
   } else {
     indicate_using_led(1, false);
   }
 
-  // green led for alt
+  /* green led for alt */
   if (keyboard_report->mods & MOD_BIT(KC_LALT) ||
-      ((get_oneshot_mods() & MOD_BIT(KC_LALT)) && !has_oneshot_mods_timed_out())) {
+    ((get_oneshot_mods() & MOD_BIT(KC_LALT)) && !has_oneshot_mods_timed_out())) {
     indicate_using_led(2, true);
   } else {
     indicate_using_led(2, false);
   }
 
-  // blue led for function mode
+  /* blue led for function mode */
   if (IS_LAYER_ON(FNAV)) {
     indicate_using_led(3, true);
   } else {
