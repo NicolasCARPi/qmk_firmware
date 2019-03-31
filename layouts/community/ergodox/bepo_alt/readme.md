@@ -7,6 +7,7 @@
 This keymap has been made for the BEPO layout (https://bepo.fr), which is an ergonomic french keyboard layout based on Dvorak rules. As it's made for french people, the following of this readme will be in french.
 
 Keyboard Maintainer: [Nicolas CARPi](https://github.com/NicolasCARPi)
+
 Hardware Supported: Ergodox EZ
 
 ## Disposition BÉPO pour l'ErgoDox
