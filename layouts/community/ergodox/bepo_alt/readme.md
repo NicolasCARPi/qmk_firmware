@@ -2,9 +2,9 @@
 
 This keymap has been made for the BEPO layout (https://bepo.fr), which is an ergonomic french keyboard layout based on Dvorak rules. As it's made for french people, the following of this readme will be in french.
 
-![layer0](https://i.imgur.com/jvdSHDl.png)
+![layer0](https://i.imgur.com/vd4QLBf.png)
 
-![layer1](https://i.imgur.com/6L66xHB.png)
+![layer1](https://i.imgur.com/eo101eD.png)
 
 ## Disposition BÉPO pour l'ErgoDox
 
