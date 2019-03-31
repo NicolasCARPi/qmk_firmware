@@ -60,7 +60,7 @@ make ergodox_ez:bepo_alt
 ### Chargement
 
 ~~~bash
-teensy-loader-cli -w -mmcu=atmega32u4 -v ergodox_ez_bepo_alt.hex
+teensy-loader-cli -w -mmcu=atmega32u4 -v ergodox_ez_bepo_alt.hex && sleep 6 && setxkbmap fr bepo
 ~~~
 
-Puis taper la commande `setxkbmap fr bepo` (attention clavier en qwerty à ce moment-là !).
+J'ai ajouté un sleep avant la commande pour remettre en bépo afin de laisser au clavier le temps de rebooter.
